@@ -3,8 +3,7 @@
 use BLL\bllOperador;
 
   include_once '../../BLL/blloperador.php'; 
-  $bll = new \bll\bllOperador(); 
-
+  $bll = new \BLL\bllOperador; 
   $lstOperador = $bll->Select(); 
 ?>
 
@@ -25,7 +24,6 @@ use BLL\bllOperador;
 <body>
     <h1>Listar Operadores</h1>
 
-  
 
     <table class="striped red lighten-2" >
         <tr>
@@ -39,7 +37,7 @@ use BLL\bllOperador;
         ?>
             <tr>
                 <td><?php echo $operador->getId(); ?></td>
-                <td><?php echo $operador->getNome();?></td>
+                <td><?php echo $operador->getNome(); ?></td>
                 <td><?php echo $operador->getAniversario(); ?></td>
                 <td><?php echo "R$" . number_format($operador->getSalario(), 2, ",", "."); ?></td>
 
