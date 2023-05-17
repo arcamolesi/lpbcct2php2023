@@ -18,7 +18,6 @@
             return $dal->SelectID($id);
         }
 
-
         public function Insert (\MODEL\Operador $operador){
            
             //echo "Nome: {$operador->getNome()} </br>"; 
@@ -42,6 +41,16 @@
            $dal->Update($operador);
           
         }
+
+        public function Delete (int $id){
+
+            // regras de negócios devem ser implementadas neste local.
+ 
+            $dal = new \DAL\dalOperador(); 
+ 
+            $dal->Delete($id);
+           
+         }
     }
 
 
