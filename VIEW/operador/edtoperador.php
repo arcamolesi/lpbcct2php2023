@@ -31,6 +31,7 @@ echo $operador->getNome();
 </head>
 
 <body>
+    <?php include_once '../menu.php';?>
     <div class="container teal lighten-5 black-text col s12">
         <div class="center orange">
             <h1>Editar Operador</h1>
@@ -78,10 +79,7 @@ echo $operador->getNome();
 
 
     </div>
-
-
-
-
+    <?php include_once '../footer.php';?>
 </body>
 
 </html>
