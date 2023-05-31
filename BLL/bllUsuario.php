@@ -1,7 +1,7 @@
 <?php
     namespace BLL; 
     use DAL\dalUsuario; 
-    include_once 'C:\xampp\htdocs\lpbcct1php2023\DAL\dalUsuario.php';
+    include_once 'C:\xampp\htdocs\lpbcct2php2023\DAL\dalUsuario.php';
     
     class bllUsuario {
    

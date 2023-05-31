@@ -1,3 +1,10 @@
+<?php
+  session_start(); 
+   if (!isset($_SESSION['login']))
+       Header("Location: ../index.php");   
+?> 
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -25,6 +32,7 @@
                 <li><a href="\lpbcct2php2023\VIEW\operador\lstoperador2.php">Operador</a></li>
                 <li><a href="../operador/lstoperador2.php">Máquinas</a></li>
                 <li><a href="collapsible.html">Equipamentos</a></li>
+                <li><a href="/lpbcct2php2023/view/logout.php">Logout</a></li>
             </ul>
         </div>
     </nav>
