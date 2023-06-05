@@ -17,6 +17,11 @@
            
             return $dal->SelectID($id);
         }
+        
+        public function SelectNome(string $nome){
+            $daloperador = new dalOperador(); 
+            return $daloperador->SelectNome($nome);
+        }
 
         public function Insert (\MODEL\Operador $operador){
            

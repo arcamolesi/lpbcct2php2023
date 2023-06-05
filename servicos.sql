@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21-Abr-2023 às 00:38
+-- Tempo de geração: 05-Jun-2023 às 04:20
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.0.25
 
+SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -69,8 +70,12 @@ CREATE TABLE `operador` (
 --
 
 INSERT INTO `operador` (`id`, `nome`, `aniversario`, `salario`) VALUES
-(1, 'Felip', '1990-12-10', 35000),
-(2, 'Jose', '1986-12-15', 3000);
+(33, 'Samuel', '2023-06-14', 3333),
+(34, 'ana', '2023-05-25', 3333),
+(35, 'Pedro', '2023-06-14', 4567),
+(36, 'Gustavo', '2023-06-13', 10000),
+(37, 'Kainan', '2023-06-05', 45000),
+(38, 'anamaria', '2023-06-07', 34423);
 
 -- --------------------------------------------------------
 
@@ -86,6 +91,28 @@ CREATE TABLE `servico` (
   `data` date NOT NULL,
   `qtdehrs` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `id` int(11) NOT NULL,
+  `usuario` varchar(10) NOT NULL,
+  `senha` varchar(32) NOT NULL,
+  `email` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`id`, `usuario`, `senha`, `email`) VALUES
+(1, 'camolesi', '1f88b714bc391ad4110a05ce6f7536fd', 'camolesi@fema.edu.br'),
+(2, 'samuca', '1f88b714bc391ad4110a05ce6f7536fd', 'samuca@hotmail.com'),
+(3, 'guilherme', '1f88b714bc391ad4110a05ce6f7536fd', 'guilherme@fema.edu.br');
 
 --
 -- Índices para tabelas despejadas
@@ -119,6 +146,12 @@ ALTER TABLE `servico`
   ADD KEY `servico_equipamento` (`equipamento`);
 
 --
+-- Índices para tabela `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT de tabelas despejadas
 --
 
@@ -138,13 +171,19 @@ ALTER TABLE `equipamento`
 -- AUTO_INCREMENT de tabela `operador`
 --
 ALTER TABLE `operador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de tabela `servico`
 --
 ALTER TABLE `servico`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restrições para despejos de tabelas
@@ -157,6 +196,7 @@ ALTER TABLE `servico`
   ADD CONSTRAINT `servico_area` FOREIGN KEY (`area`) REFERENCES `area` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `servico_equipamento` FOREIGN KEY (`equipamento`) REFERENCES `equipamento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `servico_operador` FOREIGN KEY (`operador`) REFERENCES `operador` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

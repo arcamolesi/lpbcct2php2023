@@ -2,9 +2,20 @@
 
 use BLL\bllOperador;
 
-include_once '../../BLL/blloperador.php';
-$bll = new \BLL\bllOperador;
-$lstOperador = $bll->Select();
+include_once  'C:\xampp\htdocs\lpbcct2php2023\BLL\bllOperador.php';
+
+if (isset($_GET['busca']))
+    $busca = $_GET['busca'];
+else $busca = null;
+
+echo "Busca: " . $busca . "</br>"; 
+
+$bll = new \bll\bllOperador();
+
+if ($busca == null)
+    $lstOperador = $bll->Select();
+else $lstOperador = $bll->SelectNome($busca);
+
 ?>
 
 
@@ -26,8 +37,21 @@ $lstOperador = $bll->Select();
 </head>
 
 <body>
-    <?php include_once '../menu.php';?>
+    <?php include_once '../menu.php'; ?>
     <h1>Listar Operadores</h1>
+
+    <div class="row">
+        <div class="input-field">
+            <form action="../operador/lstoperador2.php" method="GET" id="frmBuscaOperador" class="col s8">
+                <div class="input-field col s8">
+                    <input type="text" placeholder="informe o nome do Operador para ser selicionado" class="form-control col s10" id="txtBusca" name="busca">
+                    <button class="btn waves-effect waves-light col m1" type="submit" name="action">
+                        <i class="material-icons right">search</i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <table class="striped indigo lighten-3">
         <tr>
             <th>ID</th>
@@ -70,7 +94,7 @@ $lstOperador = $bll->Select();
         }
         ?>
     </table>
-    <?php include_once '../footer.php';?>
+    <?php include_once '../footer.php'; ?>
 </body>
 
 </html>
