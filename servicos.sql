@@ -3,11 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 05-Jun-2023 às 04:20
+-- Tempo de geração: 06-Jun-2023 às 00:41
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.0.25
 
-SET FOREIGN_KEY_CHECKS=0;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -33,9 +32,22 @@ USE `servicos`;
 CREATE TABLE `area` (
   `id` int(11) NOT NULL,
   `nome` varchar(35) NOT NULL,
-  `tipo` varchar(1) NOT NULL,
+  `tipo` int(1) NOT NULL,
   `hectares` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Extraindo dados da tabela `area`
+--
+
+INSERT INTO `area` (`id`, `nome`, `tipo`, `hectares`) VALUES
+(1, 'Sitio Camolesi', 1, 100),
+(2, 'Fazenda Santo Antonio', 2, 2000),
+(3, 'Estancia Boa Agra', 2, 30),
+(4, 'Chácara Agua Boa', 3, 1),
+(5, 'almir', 1, 1233),
+(6, 'Sitio Alegria', 2, 20),
+(7, 'Estancia Boa Terra', 3, 3);
 
 -- --------------------------------------------------------
 
@@ -51,6 +63,14 @@ CREATE TABLE `equipamento` (
   `valorhora` float NOT NULL,
   `status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Extraindo dados da tabela `equipamento`
+--
+
+INSERT INTO `equipamento` (`id`, `nome`, `marca`, `valor`, `valorhora`, `status`) VALUES
+(1, 'Trator', 'Generica', 100000, 100, 'A'),
+(2, 'Colhedora de Grãos', 'Genérica', 1000000, 500, 'A');
 
 -- --------------------------------------------------------
 
@@ -91,6 +111,28 @@ CREATE TABLE `servico` (
   `data` date NOT NULL,
   `qtdehrs` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `tipoarea`
+--
+
+CREATE TABLE `tipoarea` (
+  `id` int(11) NOT NULL,
+  `descricao` varchar(35) NOT NULL,
+  `quantidade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Extraindo dados da tabela `tipoarea`
+--
+
+INSERT INTO `tipoarea` (`id`, `descricao`, `quantidade`) VALUES
+(1, 'Própria', 0),
+(2, 'Arrendamento', 1),
+(3, 'Parceria', 1),
+(4, 'Desmatamento', 0);
 
 -- --------------------------------------------------------
 
@@ -146,6 +188,12 @@ ALTER TABLE `servico`
   ADD KEY `servico_equipamento` (`equipamento`);
 
 --
+-- Índices para tabela `tipoarea`
+--
+ALTER TABLE `tipoarea`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Índices para tabela `usuario`
 --
 ALTER TABLE `usuario`
@@ -159,13 +207,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `area`
 --
 ALTER TABLE `area`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de tabela `equipamento`
 --
 ALTER TABLE `equipamento`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de tabela `operador`
@@ -178,6 +226,12 @@ ALTER TABLE `operador`
 --
 ALTER TABLE `servico`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de tabela `tipoarea`
+--
+ALTER TABLE `tipoarea`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
@@ -196,7 +250,6 @@ ALTER TABLE `servico`
   ADD CONSTRAINT `servico_area` FOREIGN KEY (`area`) REFERENCES `area` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `servico_equipamento` FOREIGN KEY (`equipamento`) REFERENCES `equipamento` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `servico_operador` FOREIGN KEY (`operador`) REFERENCES `operador` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-SET FOREIGN_KEY_CHECKS=1;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
