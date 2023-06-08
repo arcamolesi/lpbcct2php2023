@@ -9,7 +9,7 @@
 
  
  $area->setNome($_POST['txtNome']);
- $area->setTipo($_POST['txtTipo']); 
+ $area->setTipo($_POST['slcTipoArea']); 
  $area->setHectares($_POST['txtHectares']); 
    
  $bllArea= new \BLL\bllArea();
